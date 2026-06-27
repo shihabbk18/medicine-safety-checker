@@ -17,7 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
   <body>
     <header class="topbar">
@@ -39,11 +39,14 @@
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Real public medicine labels, not fake training data</p>
-          <h1>Medication safety checks that explain where the concern came from.</h1>
+          <h1>
+            <span>Medicine safety</span>
+            <span>with traceable evidence.</span>
+          </h1>
           <p class="lede">
             Enter a medicine list and patient context. The assistant normalizes names with NIH
-            RxNorm, searches openFDA drug labels, extracts warning sections, and builds a focused
-            review brief for pharmacists, clinicians, and informed patients.
+            RxNorm, searches openFDA drug labels, and builds a focused review brief for pharmacists,
+            clinicians, and informed patients.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#assistant">Run a review</a>
@@ -54,7 +57,7 @@
           <div class="dashboard-top">
             <span class="live-dot"></span>
             <div>
-              <strong>Evidence-first engine</strong>
+              <strong>Evidence-first review engine</strong>
               <p>RxNorm normalization + openFDA label sections.</p>
             </div>
           </div>
@@ -79,7 +82,10 @@
         <div class="assistant-heading">
           <div>
             <p class="eyebrow">Safety assistant</p>
-            <h2>Build a review brief from real label data.</h2>
+            <h2>
+              <span>Build a review brief</span>
+              <span>from real label data.</span>
+            </h2>
           </div>
           <div class="toolbar">
             <button class="tool-button" id="demo-basic" type="button">Load cardiac demo</button>
@@ -211,7 +217,10 @@ metformin"
       <section class="evidence-section" id="evidence">
         <div>
           <p class="eyebrow">Data strategy</p>
-          <h2>No fake model. No pretend clinical certainty.</h2>
+          <h2>
+            <span>No fake model.</span>
+            <span>No pretend certainty.</span>
+          </h2>
         </div>
         <div class="source-grid">
           <article>
@@ -244,7 +253,10 @@ metformin"
       <section class="safety-section" id="safety">
         <div>
           <p class="eyebrow">Clinical safety boundary</p>
-          <h2>This is a review assistant, not a doctor.</h2>
+          <h2>
+            <span>Review assistant.</span>
+            <span>Not a doctor.</span>
+          </h2>
         </div>
         <div class="safety-copy">
           <p>
@@ -266,6 +278,6 @@ metformin"
       <span>Built for PWA, Android wrapper, or iOS wrapper workflows</span>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=3"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 :root {
-  --bg: #eef4f1;
+  --bg: #f2f5f3;
   --ink: #0b1f1a;
   --muted: #64746f;
   --panel: #ffffff;
@@ -23,7 +23,7 @@ html {
 
 body {
   background:
-    linear-gradient(180deg, rgba(8, 121, 86, 0.06), transparent 420px),
+    linear-gradient(180deg, rgba(8, 121, 86, 0.055), transparent 360px),
     var(--bg);
   color: var(--ink);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -38,12 +38,12 @@ a {
 .topbar {
   align-items: center;
   backdrop-filter: blur(18px);
-  background: rgba(238, 244, 241, 0.9);
+  background: rgba(242, 245, 243, 0.92);
   border-bottom: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
   left: 0;
-  padding: 14px clamp(18px, 5vw, 72px);
+  padding: 12px clamp(18px, 5vw, 64px);
   position: sticky;
   right: 0;
   top: 0;
@@ -64,9 +64,9 @@ a {
   color: #fff;
   display: inline-flex;
   font-weight: 900;
-  height: 46px;
+  height: 40px;
   justify-content: center;
-  width: 50px;
+  width: 44px;
 }
 
 .brand strong,
@@ -76,7 +76,7 @@ a {
 
 .brand small {
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 800;
 }
 
@@ -101,23 +101,25 @@ nav a:hover {
 .evidence-section,
 .safety-section {
   margin: 0 auto;
-  max-width: 1240px;
-  padding: 82px clamp(18px, 4vw, 42px);
+  max-width: 1180px;
+  padding: 64px clamp(18px, 4vw, 42px);
 }
 
 .hero {
   align-items: center;
   display: grid;
-  gap: 44px;
-  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.72fr);
-  min-height: calc(100vh - 75px);
+  gap: 32px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.68fr);
+  min-height: auto;
+  padding-bottom: 42px;
+  padding-top: 58px;
 }
 
 .eyebrow {
   color: var(--green-dark);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 900;
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   text-transform: uppercase;
 }
 
@@ -129,16 +131,21 @@ p {
 }
 
 h1 {
-  font-size: clamp(3rem, 7.5vw, 7rem);
-  line-height: 0.91;
-  margin-bottom: 24px;
-  max-width: 980px;
+  font-size: clamp(2.15rem, 3.4vw, 3.45rem);
+  line-height: 1.08;
+  margin-bottom: 18px;
+  max-width: 620px;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 4.4rem);
-  line-height: 1.02;
+  font-size: clamp(1.45rem, 2.1vw, 2.15rem);
+  line-height: 1.14;
   margin-bottom: 0;
+}
+
+h1 span,
+h2 span {
+  display: block;
 }
 
 h3 {
@@ -149,8 +156,8 @@ h3 {
 
 .lede {
   color: #384943;
-  font-size: clamp(1.08rem, 2vw, 1.36rem);
-  max-width: 760px;
+  font-size: clamp(1rem, 1.4vw, 1.14rem);
+  max-width: 620px;
 }
 
 .hero-actions,
@@ -158,7 +165,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 24px;
 }
 
 .button,
@@ -172,8 +179,8 @@ h3 {
   font: inherit;
   font-weight: 900;
   justify-content: center;
-  min-height: 46px;
-  padding: 0 16px;
+  min-height: 42px;
+  padding: 0 15px;
   text-decoration: none;
 }
 
@@ -195,12 +202,11 @@ h3 {
 
 .hero-dashboard {
   background:
-    radial-gradient(circle at 16% 12%, rgba(8, 121, 86, 0.24), transparent 28%),
-    linear-gradient(145deg, #ffffff, #e3eee8);
+    linear-gradient(145deg, #ffffff, #e6efea);
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
-  padding: 26px;
+  padding: 20px;
 }
 
 .dashboard-top {
@@ -211,7 +217,7 @@ h3 {
   display: grid;
   gap: 14px;
   grid-template-columns: auto 1fr;
-  padding: 18px;
+  padding: 16px;
 }
 
 .dashboard-top p {
@@ -239,7 +245,7 @@ h3 {
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 18px;
+  padding: 15px;
 }
 
 .stat-row span,
@@ -261,10 +267,10 @@ h3 {
 }
 
 .assistant-heading {
-  align-items: end;
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .toolbar {
@@ -274,7 +280,7 @@ h3 {
 .workspace {
   align-items: start;
   display: grid;
-  gap: 18px;
+  gap: 16px;
   grid-template-columns: minmax(330px, 0.82fr) minmax(0, 1.18fr);
 }
 
@@ -290,7 +296,7 @@ h3 {
 
 .intake-panel,
 .results-panel {
-  padding: 22px;
+  padding: 20px;
 }
 
 .panel-section + .panel-section {
@@ -390,8 +396,8 @@ select {
 
 .risk-card strong {
   display: block;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  line-height: 1;
+  font-size: clamp(1.6rem, 3vw, 2.35rem);
+  line-height: 1.05;
   margin: 7px 0 10px;
 }
 
@@ -528,7 +534,7 @@ select {
 .evidence-section,
 .safety-section {
   display: grid;
-  gap: 36px;
+  gap: 28px;
   grid-template-columns: 0.82fr 1.18fr;
 }
 
@@ -566,6 +572,11 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .hero {
+    gap: 24px;
+    padding-top: 42px;
+  }
+
   .source-grid {
     grid-template-columns: 1fr;
   }
@@ -592,11 +603,17 @@ select {
   .assistant-shell,
   .evidence-section,
   .safety-section {
-    padding: 58px 18px;
+    padding: 44px 18px;
   }
 
-  .hero {
-    min-height: auto;
+  h1 {
+    font-size: clamp(1.9rem, 9.6vw, 2.7rem);
+    line-height: 1.08;
+  }
+
+  h2 {
+    font-size: clamp(1.38rem, 6.5vw, 1.85rem);
+    line-height: 1.14;
   }
 
   .context-grid {
