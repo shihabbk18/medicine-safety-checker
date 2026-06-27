@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MedSafe Lens checks medicine names for possible duplicate ingredients, interaction warnings, missing safety context, and pharmacist-ready summaries."
+    />
+    <title>MedSafe Lens | Medicine Safety Checker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a class="brand" href="#top" aria-label="MedSafe Lens home">
+        <span>ML</span>
+        <strong>MedSafe Lens</strong>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#checker">Checker</a>
+        <a href="#how">How it works</a>
+        <a href="#limits">Safety</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Medicine safety decision support</p>
+          <h1>Check medicine combinations before the conversation with a clinician.</h1>
+          <p class="lede">
+            Enter the medicines, supplements, or OTC products someone is taking. MedSafe Lens uses
+            NIH RxNorm/RxNav data plus local safety rules to flag possible interaction signals,
+            duplicate ingredients, and missing context.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#checker">Start checking</a>
+            <a class="button secondary" href="#limits">Read safety limits</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Safety summary">
+          <div class="status-card">
+            <span class="pulse"></span>
+            <div>
+              <strong>Human-in-the-loop</strong>
+              <p>No diagnosis, no dosing orders, no replacement for medical care.</p>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <article>
+              <span>01</span>
+              <p>Normalize names with RxNorm.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <p>Check interaction records.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <p>Explain risks in plain language.</p>
+            </article>
+            <article>
+              <span>04</span>
+              <p>Prepare pharmacist questions.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="checker-shell" id="checker">
+        <div class="checker-heading">
+          <div>
+            <p class="eyebrow">Interactive checker</p>
+            <h2>Tell me what the patient is taking.</h2>
+          </div>
+          <button class="icon-button" id="load-demo" type="button" title="Load demo medicines">
+            Demo
+          </button>
+        </div>
+
+        <div class="checker-layout">
+          <form class="input-panel" id="medicine-form">
+            <label for="medicine-input">Medicines, one per line</label>
+            <textarea
+              id="medicine-input"
+              name="medicine-input"
+              spellcheck="false"
+              placeholder="Example:
+warfarin
+aspirin
+ibuprofen
+metformin"
+            ></textarea>
+
+            <div class="context-grid" aria-label="Patient context">
+              <label>
+                Age
+                <input id="age-input" min="0" max="120" name="age" type="number" placeholder="Optional" />
+              </label>
+              <label>
+                Pregnancy
+                <select id="pregnancy-input" name="pregnancy">
+                  <option value="">Unknown / not applicable</option>
+                  <option value="yes">Pregnant or could be pregnant</option>
+                  <option value="no">No</option>
+                </select>
+              </label>
+              <label>
+                Kidney or liver disease
+                <select id="organ-input" name="organ">
+                  <option value="">Unknown</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </label>
+              <label>
+                Allergies
+                <input id="allergy-input" name="allergy" type="text" placeholder="Optional" />
+              </label>
+            </div>
+
+            <button class="button primary wide" type="submit">Check safety signals</button>
+            <p class="fine-print">
+              Uses public medicine data. It may miss brand names, local formulations, dose-specific
+              issues, and contraindications. A pharmacist or doctor must confirm any concern.
+            </p>
+          </form>
+
+          <section class="results-panel" aria-live="polite">
+            <div class="risk-meter" id="risk-meter">
+              <span class="risk-label">Not checked yet</span>
+              <strong>Ready</strong>
+              <p>Add at least two medicines for interaction checking.</p>
+            </div>
+
+            <div class="result-section">
+              <h3>Recognized medicines</h3>
+              <div class="pill-list" id="recognized-list">
+                <span class="empty">No medicines checked yet.</span>
+              </div>
+            </div>
+
+            <div class="result-section">
+              <h3>Safety findings</h3>
+              <div class="finding-list" id="finding-list">
+                <article class="finding neutral">
+                  <strong>Waiting for input</strong>
+                  <p>Enter medicines and run the checker to see possible issues.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="result-section">
+              <h3>Questions to ask a pharmacist or doctor</h3>
+              <ul class="question-list" id="question-list">
+                <li>Ask whether all current prescription, OTC, and supplement products are needed.</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="info-section" id="how">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2>Real data first, model-like reasoning second.</h2>
+        </div>
+        <div class="step-grid">
+          <article>
+            <span>RxNorm</span>
+            <h3>Name normalization</h3>
+            <p>
+              The app searches NIH RxNorm so common medicine names map to standardized identifiers.
+            </p>
+          </article>
+          <article>
+            <span>RxNav</span>
+            <h3>Interaction scan</h3>
+            <p>
+              When identifiers are found, the app checks public interaction records and presents
+              source descriptions.
+            </p>
+          </article>
+          <article>
+            <span>Rules</span>
+            <h3>Safety context</h3>
+            <p>
+              Local rules flag duplicate entries, missing age/pregnancy/organ-function context, and
+              high-risk medicine keywords.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="warning-section" id="limits">
+        <div>
+          <p class="eyebrow">Safety limits</p>
+          <h2>This is decision support, not medical advice.</h2>
+        </div>
+        <div class="warning-copy">
+          <p>
+            Do not stop, start, or change medicine because of this app alone. If there are severe
+            symptoms such as trouble breathing, chest pain, fainting, swelling of the face/throat, or
+            signs of overdose, seek emergency care immediately.
+          </p>
+          <p>
+            The app can miss interactions when the medicine name is unknown, the drug is local-only,
+            the issue is dose-specific, or the patient context is incomplete. It is built to improve
+            questions, not to replace professionals.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>MedSafe Lens</span>
+      <span>Built with NIH/NLM RxNorm and RxNav public APIs</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
