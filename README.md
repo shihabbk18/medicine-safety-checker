@@ -1,22 +1,33 @@
 # MedSafe Lens
 
-Medicine safety decision-support website for checking possible interaction signals, duplicate medicine entries, missing patient context, and pharmacist-ready questions.
+MedSafe Lens is a real-data medicine safety review assistant. It helps patients, pharmacists, and clinicians organize a medicine list into a traceable review brief using public medicine data.
+
+## What changed in v2
+
+- Rebuilt the interface into a product-style PWA shell.
+- Removed canned repeated advice and demo-only rule behavior.
+- Uses live public APIs first:
+  - NIH/NLM RxNorm for medicine name normalization.
+  - openFDA drug labels for boxed warnings, contraindications, interactions, pregnancy, pediatric, geriatric, and warning sections.
+- Generates medicine-specific findings from retrieved label sections.
+- Generates dynamic questions based on the exact warnings and patient context.
+- Adds PWA support through `manifest.webmanifest` and `sw.js`, so the project can later be wrapped with Capacitor for Android/iOS.
 
 ## What it does
 
-- Normalizes medicine names with the public NIH/NLM RxNorm API.
-- Checks interaction signals with the public RxNav interaction API.
-- Flags duplicate entries and high-monitoring medicine keywords.
-- Adds context warnings for age, pregnancy, kidney/liver disease, and allergies.
-- Produces plain-language findings and questions to ask a pharmacist or doctor.
+- Accepts multiple medicines, one per line.
+- Captures patient context: age, sex, pregnancy/breastfeeding, kidney/liver disease, conditions, and allergies.
+- Normalizes names with RxNorm when the API is available.
+- Searches openFDA labels by generic name, substance name, and brand name.
+- Extracts evidence from real label sections.
+- Flags high-priority review signals such as boxed warnings, contraindications, and relevant pregnancy/geriatric/pediatric sections.
+- Builds evidence cards with manufacturer, route, product type, match field, and label effective date when available.
 
 ## What it does not do
 
-This project is not a medical device, diagnosis tool, prescribing tool, or replacement for clinical judgment. It should not be used to start, stop, or change medication without a qualified healthcare professional.
+This is not a medical device, diagnosis tool, prescribing tool, or replacement for clinical judgment. It should not be used to start, stop, or change medication without a qualified healthcare professional.
 
 ## Run locally
-
-Because the app uses browser `fetch`, run it through a local static server:
 
 ```powershell
 cd "C:\Users\NuRuL AzAm\Documents\SHIHAB\medicine-safety-checker"
@@ -32,9 +43,18 @@ http://127.0.0.1:5174/
 ## Data sources
 
 - RxNorm API: https://lhncbc.nlm.nih.gov/RxNav/APIs/RxNormAPIs.html
-- RxNav interaction API: https://rxnav.nlm.nih.gov/
-- openFDA drug labeling API reference: https://open.fda.gov/apis/drug/label/
+- openFDA drug label API: https://open.fda.gov/apis/drug/label/
+- openFDA searchable fields: https://open.fda.gov/apis/drug/label/searchable-fields/
 
-## Why no trained Kaggle model yet?
+## Android/iOS path
 
-For drug safety, a small trained model from a random dataset can look impressive but be unsafe. This first version uses authoritative public medicine vocabularies and interaction records instead. A future research branch can add a trained classifier only after a validated, licensed dataset and clinician-reviewed evaluation plan are selected.
+This project is currently a static PWA. For a native app wrapper:
+
+1. Keep the web app as the shared UI.
+2. Add Capacitor.
+3. Build Android/iOS shells from the same app.
+4. Add secure backend proxying if API quotas, privacy, or audit logging become important.
+
+## Future research path
+
+A trained model can be added only after selecting a validated, licensed clinical dataset and defining a clinician-reviewed evaluation plan. For medication safety, a random Kaggle model would create false confidence, so this version uses traceable public label evidence instead.

@@ -1,0 +1,17 @@
+{
+  "name": "MedSafe Lens",
+  "short_name": "MedSafe",
+  "description": "Real-data medicine safety review assistant using RxNorm and openFDA labels.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#eef4f1",
+  "theme_color": "#0b1f1a",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
